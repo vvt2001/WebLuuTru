@@ -1,0 +1,201 @@
+﻿@model WebDauThauOnline.Models.KetQuaLuaChonNhaThauViewModel
+
+@{
+    ViewBag.Title = "Thông tin chi tiết";
+}
+<style>
+    th {
+        background-color: #f2f2f2;
+        width: 30%;
+    }
+    table {
+        table-layout: fixed;
+        border: solid 1px
+    }
+
+    .time-container {
+        padding: 10px 10px 10px 10px;
+        text-align: center;
+        background-color: darkblue;
+        margin-bottom: 20px;
+    }
+</style>
+<div style="width: 100%; overflow: hidden;">
+    <div class="col-sm-3" style=" height: auto; float: left; margin:100px  0 0">
+        <div class="time-container">
+            <h4 style="color: white; font-weight:bold">Thời điểm đăng tải</h4>
+            @if (Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_đăng_tải != null)
+            {
+                <h3 style="color: white; font-weight: bold">@Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_đăng_tải.Value.ToString("dd/MM/yyyy HH:mm")</h3>
+            }
+            else
+            {
+                <h3 style="color: white; font-weight: bold">NaN</h3>
+            }
+        </div>
+        <div class="time-container" style="background-color:red">
+            <h4 style="color: white; font-weight: bold">Thời điểm phê duyệt</h4>
+            @if (Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_phê_duyệt != null)
+            {
+                <h3 style="color: white; font-weight: bold">@Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_phê_duyệt.Value.ToString("dd/MM/yyyy HH:mm")</h3>
+            }
+            else
+            {
+                <h3 style="color: white; font-weight: bold">NaN</h3>
+            }
+        </div>
+        @*        <div class="time-container">
+                <h4>Thời điểm đăng tải</h4>
+                <h3>@Model.ThongBaoMoiThauModel.Thời_điểm_đăng_tải.Value.ToString("dd/MM/yyyy HH:mm")</h3>
+            </div>*@
+    </div>
+    <div class="col-sm-9" style=" float: right;">
+        <div>
+            <h3>Thông Tin Chi Tiết</h3>
+            @if(Session["ID"] != null)
+            {
+                if (Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.AccountID == (int)Session["ID"])
+                {
+                    <p>@Html.ActionLink("Chỉnh sửa", "Edit", "KetQuaLuaChonNhaThau", new { id = Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.ID }, null) | @Html.ActionLink("Xóa", "Delete", "KetQuaLuaChonNhaThau", new { id = Model.KetQuaLuaChonNhaThau_ThongTinChiTiet.ID }, null)</p>
+                }
+            }
+        </div>
+        <table class="table" , style="table-layout: fixed">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_TBMT)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_TBMT)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_hiệu_KHLCNT)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_hiệu_KHLCNT)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_gói_thầu)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_gói_thầu)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_dự_án_Dự_toán_mua_sắm)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_dự_án_Dự_toán_mua_sắm)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Bên_mời_thầu)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Bên_mời_thầu)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_lựa_chọn_NT)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_lựa_chọn_NT)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_dự_toán)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_dự_toán)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_gói_thầu)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_gói_thầu)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Đính_kèm_thông_báo_kết_quả_LCNT)
+                </th>
+                <td>
+                    @foreach (var item in Model.Files)
+                    {
+                        @Html.ActionLink(item.Name, "DownLoadFile", new { id = item.ID })
+                        <br />
+                    }
+                </td>
+            </tr>
+        </table>
+        <h3>Kết quả</h3>
+        <table class="table" , style="table-layout: fixed">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Nhà_thầu_trúng_thầu)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Nhà_thầu_trúng_thầu)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_trúng_thầu)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_trúng_thầu)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_hợp_đồng)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_hợp_đồng)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Thời_gian_thực_hiện_HĐ)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Thời_gian_thực_hiện_HĐ)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_quyết_định_phê_duyệt)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_quyết_định_phê_duyệt)
+                </td>
+            </tr>
+        </table>
+        <div>
+            @Html.ActionLink("Về trang chủ", "Index", "Home")
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BenMoiThauDaDuyetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BenMoiThauDaDuyet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mã cơ quan" Type="nvarchar" MaxLength="10" />
+          <Property Name="Bên mời thầu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Địa chỉ" Type="nvarchar(max)" />
+          <Property Name="Số điện thoại" Type="nvarchar" MaxLength="15" />
+          <Property Name="Tên viết tắt" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tên tiếng Anh" Type="nvarchar(max)" />
+          <Property Name="Phân loại trực thuộc" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tập đoàn TCT Bộ ban ngành" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tỉnh Thành Phố" Type="nvarchar" MaxLength="50" />
+          <Property Name="Số Fax cơ quan" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trang web" Type="nvarchar(max)" />
+          <Property Name="Hình thái kinh doanh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mã số thuế" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngành nghề" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngày phê duyệt" Type="date" />
+          <Property Name="Số ĐKKD" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="BenMoiThauDaDuyetModelStoreContainer">
+          <EntitySet Name="BenMoiThauDaDuyet" EntityType="Self.BenMoiThauDaDuyet" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BenMoiThauDaDuyetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BenMoiThauDaDuyet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mã_cơ_quan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Bên_mời_thầu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Địa_chỉ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Số_điện_thoại" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Tên_viết_tắt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tên_tiếng_Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phân_loại_trực_thuộc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tỉnh_Thành_Phố" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Số_Fax_cơ_quan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trang_web" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hình_thái_kinh_doanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mã_số_thuế" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngành_nghề" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tập_đoàn_TCT_Bộ_ban_ngành" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngày_phê_duyệt" Type="DateTime" Precision="0" />
+          <Property Name="Số_ĐKKD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="BenMoiThauDaDuyetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BenMoiThauDaDuyets" EntityType="Self.BenMoiThauDaDuyet" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BenMoiThauDaDuyetModelStoreContainer" CdmEntityContainer="BenMoiThauDaDuyetEntities">
+          <EntitySetMapping Name="BenMoiThauDaDuyets">
+            <EntityTypeMapping TypeName="BenMoiThauDaDuyetModel.BenMoiThauDaDuyet">
+              <MappingFragment StoreEntitySet="BenMoiThauDaDuyet">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Số_ĐKKD" ColumnName="Số ĐKKD" />
+                <ScalarProperty Name="Ngày_phê_duyệt" ColumnName="Ngày phê duyệt" />
+                <ScalarProperty Name="Tập_đoàn_TCT_Bộ_ban_ngành" ColumnName="Tập đoàn TCT Bộ ban ngành" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mã_cơ_quan" ColumnName="Mã cơ quan" />
+                <ScalarProperty Name="Bên_mời_thầu" ColumnName="Bên mời thầu" />
+                <ScalarProperty Name="Địa_chỉ" ColumnName="Địa chỉ" />
+                <ScalarProperty Name="Số_điện_thoại" ColumnName="Số điện thoại" />
+                <ScalarProperty Name="Tên_viết_tắt" ColumnName="Tên viết tắt" />
+                <ScalarProperty Name="Tên_tiếng_Anh" ColumnName="Tên tiếng Anh" />
+                <ScalarProperty Name="Phân_loại_trực_thuộc" ColumnName="Phân loại trực thuộc" />
+                <ScalarProperty Name="Tỉnh_Thành_Phố" ColumnName="Tỉnh Thành Phố" />
+                <ScalarProperty Name="Số_Fax_cơ_quan" ColumnName="Số Fax cơ quan" />
+                <ScalarProperty Name="Trang_web" ColumnName="Trang web" />
+                <ScalarProperty Name="Hình_thái_kinh_doanh" ColumnName="Hình thái kinh doanh" />
+                <ScalarProperty Name="Mã_số_thuế" ColumnName="Mã số thuế" />
+                <ScalarProperty Name="Ngành_nghề" ColumnName="Ngành nghề" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

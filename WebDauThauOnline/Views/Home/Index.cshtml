@@ -1,0 +1,290 @@
+﻿@model WebDauThauOnline.Models.SearchViewModel
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Trang chủ";
+}
+<style>
+    [data-tooltip]:before {
+        content: attr(data-tooltip);
+        opacity: 0;
+        width: 110px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        z-index: 1;
+        position: absolute;
+    }
+
+    [data-tooltip]:hover:before {
+        opacity: 1;
+    }
+</style>
+@using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
+{
+    <div id="search-bar" style="width: 80%; margin: auto">
+        <h3>Bộ lọc tìm kiếm</h3>
+        <div class="container">
+            <div class="row">
+                @Html.DropDownListFor(model => model.searchModel.Kiểu_thông_tin, ViewBag.Kiểu_thông_tin_EnumList as SelectList, new { Class = "form-control col-md-3", @style = "margin: auto; width: 220px" })
+
+                @Html.EditorFor(model => model.searchModel.Số_TBMT_Tên_gói_thầu, new { htmlAttributes = new { Class = "form-control col-md-3", @placeholder = "Số TBMT/ Tên gói thầu", @style = "margin: auto; width: 200px" } })
+
+                @Html.EditorFor(model => model.searchModel.Bên_mời_thầu, new { htmlAttributes = new { Class = "form-control col-md-3", @placeholder = "Bên mời thầu", @style = "margin: auto; width: 260px" } })
+
+                @Html.DropDownListFor(model => model.searchModel.Phạm_vi, ViewBag.Phạm_vi_EnumList as SelectList, "-Phạm vi-", new { Class = "form-control col-md-3", @style = "margin: auto; width: 280px" })
+            </div>
+            <div class="row">
+                @Html.DropDownListFor(model => model.searchModel.Loại_ngày, ViewBag.Loại_ngày_EnumList as SelectList, new { Class = "form-control col-md-2", @style = "margin: auto; width: 220px" })
+
+                @Html.DropDownListFor(model => model.searchModel.Khoảng_thời_gian, ViewBag.Khoảng_thời_gian_EnumList as SelectList, new { Class = "form-control col-md-2", id = "Khoảng_thời_gian", @style = "margin: auto; width: 200px" })
+
+                @Html.EditorFor(model => model.searchModel.Từ_ngày, new { htmlAttributes = new { Class = "form-control col-md-2", @placeholder = "Từ ngày", onfocus = "(this.type='date')", id = "Từ_ngày", @style = "margin: auto; width: 130px" } })
+
+                @Html.EditorFor(model => model.searchModel.Đến_ngày, new { htmlAttributes = new { Class = "form-control col-md-2", @placeholder = "Đến ngày", onfocus = "(this.type='date')", id = "Đến_ngày", @style = "margin: auto; width: 130px" } })
+
+                @Html.DropDownListFor(model => model.searchModel.Hình_thức, ViewBag.Hình_thức_EnumList as SelectList, "-Hình thức-", new { Class = "form-control col-md-2", @style = "margin: auto; width: 160px" })
+
+                @Html.DropDownListFor(model => model.searchModel.Lĩnh_vực, ViewBag.Lĩnh_vực_EnumList as SelectList, "-Lĩnh vực-", new { Class = "form-control col-md-1", @style = "margin: auto; width: 120px" })
+
+                <input type="submit" value="Tìm" class="btn btn-primary col-md-1" style="margin:auto; display:block; width:50px" />
+            </div>
+        </div>
+    </div>
+}
+<hr />
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        @*        <a class="nav-link" id="thong-bao-filter" href="Home/Index/ThongBaoMoiThau">Thông báo mời thầu</a>
+        *@        @Html.ActionLink("Thông báo mời thầu", "Index", "Home", new { filter = "ThongBaoMoiThau" }, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item">
+        @*        <a class="nav-link" id="ket-qua-filter" href="KetQuaLuaChonNhaThau">Kết quả lựa chọn nhà thầu</a>
+        *@        @Html.ActionLink("Kết quả lựa chọn nhà thầu", "Index", "Home", new { filter = "KetQuaLuaChonNhaThau" }, new { @class = "nav-link" })
+    </li>
+</ul>
+
+<table class="table-striped" style=" border-collapse: separate; border-spacing: 0 1em">
+    @if (Model.thongBaoMoiThauModel != null)
+    {
+        foreach (var item in Model.thongBaoMoiThauModel)
+        {
+            <tr>
+                <th colspan="3" style="padding-left: 1em">
+                    Thông báo mời thầu - Số TBMT: @item.Số_TBMT
+                </th>
+            </tr>
+            <tr>
+                <td class="col-md-1" style=" width:110px; padding-right: 10px">
+                    <div data-tooltip="Ngày đóng thầu" style="width: 110px ">
+                        @if (item.Thời_điểm_đóng_mở_thầu != null)
+                        {
+                            <div style="text-align: center; background-color: rgb(0,122,164); border-radius: 25px 25px 0 0">
+                                <p style="color:white; margin-bottom: 0">@item.Thời_điểm_đóng_mở_thầu.Value.ToString("yyyy")</p>
+                            </div>
+                            <div style="font-size: 30px; text-align: center; background-color: whitesmoke">
+                                @item.Thời_điểm_đóng_mở_thầu.Value.ToString("dd/MM")
+                            </div>
+                            <div style="text-align: center; border-radius: 0 0 25px 25px; background-color: whitesmoke ">
+                                @item.Thời_điểm_đóng_mở_thầu.Value.ToString("HH:mm")
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="font-size: 30px; text-align: center; background-color: whitesmoke; border-radius: 25px 25px 25px 25px ">
+                                NaN
+                            </div>
+                        }
+                    </div>
+                </td>
+                <td class="col-md-8" style=" border-right: solid 1px; padding-left: 1em; min-width: 850px">
+                    @Html.ActionLink(item.Tên_gói_thầu, "Details", "ThongBaoMoiThau", new { id = item.ID }, new { style = "font-weight:bold" }) <br />
+                    Bên mời thầu: @item.Bên_mời_thầu <br />
+                    Địa điểm thực hiện gói thầu: @item.Địa_điểm_thực_hiện_gói_thầu
+                </td>
+                <td class="col-md-3" style="padding-left: 1em; min-width: 270px">
+                    Số TBMT: @Html.ActionLink(item.Số_TBMT, "Details", "ThongBaoMoiThau", new { id = item.ID }, null) <br />
+                    Thời điểm đăng tải: 
+                        @if (item.Thời_điểm_đăng_tải != null)
+                        {
+                            item.Thời_điểm_đăng_tải.Value.ToString("dd/MM/yyyy HH:mm");
+                        }
+                     <br />
+                    Lĩnh vực: @item.Lĩnh_vực
+                </td>
+            </tr>
+        }
+    }
+    @if (Model.ketQuaLuaChonNhaThauModel != null)
+    {
+        foreach (var item in Model.ketQuaLuaChonNhaThauModel)
+        {
+            <tr>
+                <th colspan="3" style="padding-left: 1em">
+                    Kết quả lựa chọn nhà thầu - Số TBMT: @item.Số_TBMT
+                </th>
+            </tr>
+            <tr>
+                <td class="col-md-1" style=" min-width: 110px; padding-right: 10px">
+                    <div data-tooltip="Ngày phê duyệt" style="width: 110px ">
+                        @if (item.Ngày_phê_duyệt != null)
+                        {
+                            <div style="text-align: center; background-color: rgb(0,122,164); border-radius: 25px 25px 0 0">
+                                <p style="color:white; margin-bottom: 0">@item.Ngày_phê_duyệt.Value.ToString("yyyy")</p>
+                            </div>
+                            <div style="font-size: 30px; text-align: center; background-color: whitesmoke">
+                                @item.Ngày_phê_duyệt.Value.ToString("dd/MM")
+                            </div>
+                            <div style="text-align: center; border-radius: 0 0 25px 25px; background-color: whitesmoke ">
+                                @item.Ngày_phê_duyệt.Value.ToString("HH:mm")
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="font-size: 30px; text-align: center; background-color: whitesmoke; border-radius: 25px 25px 25px 25px ">
+                                NaN
+                            </div>
+                        }
+                    </div>
+                </td>
+                <td class="col-md-8" style="border-right: solid 1px; padding-left: 1em; min-width: 850px ">
+                    @Html.ActionLink(item.Tên_gói_thầu, "Details", "KetQuaLuaChonNhaThau", new { id = item.ID }, new { style = "font-weight:bold" }) <br />
+                    Bên mời thầu: @item.Bên_mời_thầu <br />
+                    Hình thức lựa chọn NT: @item.Hình_thức_lựa_chọn_NT
+                </td>
+                <td class="col-md-3" style="padding-left: 1em; min-width: 270px">
+                    Số TBMT: @Html.ActionLink(item.Số_TBMT, "Details", "KetQuaLuaChonNhaThau", new { id = item.ID }, null) <br />
+                    Thời điểm đăng tải:
+                    @if (item.Ngày_đăng_tải != null)
+                    {
+                        item.Ngày_đăng_tải.Value.ToString("dd/MM/yyyy HH:mm");
+                    }
+                    <br />
+                    Lĩnh vực: @item.Lĩnh_vực
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@if (ViewBag.IsEmpty)
+{
+    <br />
+    <div style="padding: 1em 1em 1em 1em; background-color:whitesmoke">
+        Không tìm thấy dữ liệu
+    </div>
+}
+
+@if (!ViewBag.IsEmpty)
+{
+    <br />
+    if (ViewBag.filter == "ThongBaoMoiThau")
+    {
+        @Html.PagedListPager(Model.thongBaoMoiThauModel, page => Url.Action("GetList",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    }
+    if (ViewBag.filter == "KetQuaLuaChonNhaThau")
+    {
+        @Html.PagedListPager(Model.ketQuaLuaChonNhaThauModel, page => Url.Action("GetList",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    }
+}
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                Tên gói thầu
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.thongBaoMoiThauModel != null)
+        {
+            foreach (var item in Model.thongBaoMoiThauModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tên_gói_thầu)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "ThongBaoMoiThau", new { id = item.ID }, null) |
+                        @Html.ActionLink("Details", "Details", "ThongBaoMoiThau", new { id = item.ID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "ThongBaoMoiThau", new { id = item.ID }, null)
+                    </td>
+                </tr>
+            }
+        }
+        @if (Model.ketQuaLuaChonNhaThauModel != null)
+        {
+            foreach (var item in Model.ketQuaLuaChonNhaThauModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tên_gói_thầu)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "KetQuaLuaChonNhaThau", new { id = item.ID }, null) |
+                        @Html.ActionLink("Details", "Details", "KetQuaLuaChonNhaThau", new { id = item.ID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "KetQuaLuaChonNhaThau", new { id = item.ID }, null)
+                    </td>
+                </tr>
+            }
+        }
+    </table>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/SearchBar.css")
+
+    <script type="text/javascript">
+        $(function () {
+            $("#Khoảng_thời_gian").on("change", function () {
+                var khoangThoiGian = $("#Khoảng_thời_gian").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ChangeTimeRange", "Home")',
+                    data: '{khoangThoiGian: ' + JSON.stringify(khoangThoiGian) + '}',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (timeInterval) {
+                        if (timeInterval == 0){
+                            document.getElementById("Từ_ngày").value = null;
+                            document.getElementById("Đến_ngày").value = null
+                                ;
+                        }
+                        else {
+                            // alert("Data has been added successfully.");
+                            var today = new Date();
+                            var yyyy = today.getFullYear();
+                            var mm = today.getMonth() + 1; // Months start at 0!
+                            var dd = today.getDate();
+
+                            if (dd < 10) dd = '0' + dd;
+                            if (mm < 10) mm = '0' + mm;
+
+                            var formattedToday = yyyy + '-' + mm + '-' + dd;
+
+                            var myPastDate = new Date(today);
+                            myPastDate.setDate(myPastDate.getDate() - timeInterval);
+
+                            yyyy = myPastDate.getFullYear();
+                            mm = myPastDate.getMonth() + 1; // Months start at 0!
+                            dd = myPastDate.getDate();
+
+                            if (dd < 10) dd = '0' + dd;
+                            if (mm < 10) mm = '0' + mm;
+
+                            var formattedPastDate = yyyy + '-' + mm + '-' + dd;
+
+                            document.getElementById("Từ_ngày").value = formattedPastDate;
+                            document.getElementById("Đến_ngày").value = formattedToday;
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+}

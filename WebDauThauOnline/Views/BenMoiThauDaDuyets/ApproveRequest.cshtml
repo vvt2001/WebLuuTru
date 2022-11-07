@@ -1,0 +1,177 @@
+﻿@model  WebDauThauOnline.Models.BenMoiThauSearchViewModel
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Phê duyệt đăng ký";
+}
+<style>
+    th {
+        text-align: center;
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        white-space: nowrap;
+    }
+
+    td {
+        padding: 0.5em 0.5em 0.5em 0.5em
+    }
+
+    tr:hover {
+        background-color: whitesmoke;
+    }
+
+    [data-tooltip]:before {
+        content: attr(data-tooltip);
+        opacity: 0;
+        width: 110px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        z-index: 1;
+        position: absolute;
+    }
+
+    [data-tooltip]:hover:before {
+        opacity: 1;
+    }
+
+    h3{
+        width:fit-content;
+    }
+</style>
+@using (Html.BeginForm("ApproveRequest", "BenMoiThauDaDuyets", FormMethod.Post))
+{
+    <div id="search-bar" style=" margin: auto ">
+        <h3>Bộ lọc tìm kiếm</h3>
+        <div class="container">
+            <div class="row">
+                @Html.DropDownListFor(model => model.BenMoiThauSearchModel.Loại_đăng_ký, ViewBag.Loại_đăng_ký_EnumList as SelectList, new { Class = "form-control col-md-3", @style = "margin: auto; width: 180px" })
+
+                @Html.EditorFor(model => model.BenMoiThauSearchModel.Mã_cơ_quan, new { htmlAttributes = new { Class = "form-control col-md-3", @placeholder = "Mã cơ quan", @style = "margin: auto; width: 210px", @maxlength = "6", onkeypress = "return isNumber(event)" } })
+
+                @Html.EditorFor(model => model.BenMoiThauSearchModel.Tên_bên_mời_thầu, new { htmlAttributes = new { Class = "form-control col-md-3", @placeholder = "Tên bên mời thầu", @style = "margin: auto; width: 500px" } })
+
+                @Html.DropDownListFor(model => model.BenMoiThauSearchModel.Tỉnh_Thành_phố, ViewBag.Tỉnh_Thành_Phố_EnumList as SelectList, "-Tỉnh/ Thành phố-", new { Class = "form-control col-md-3", @style = "margin: auto; width: 170px" })
+            </div>
+            <div class="row">
+                @Html.DropDownListFor(model => model.BenMoiThauSearchModel.Bộ_ban_ngành, ViewBag.Bộ_ban_ngành_EnumList as SelectList, "-Bộ ban ngành-", new { Class = "form-control col-md-3", @style = "margin: auto; width: 350px" })
+
+                @Html.DropDownListFor(model => model.BenMoiThauSearchModel.Tập_đoàn_TCT, ViewBag.Tập_đoàn_TCT_EnumList as SelectList, "-Tập đoàn/ TCT-", new { Class = "form-control col-md-3", @style = "margin: auto; width: 380px" })
+
+                @Html.EditorFor(model => model.BenMoiThauSearchModel.Từ_ngày, new { htmlAttributes = new { Class = "form-control col-md-2", @placeholder = "Từ ngày", onfocus = "(this.type='date')", id = "Từ_ngày", @style = "margin: auto; width: 140px" } })
+
+                @Html.EditorFor(model => model.BenMoiThauSearchModel.Đến_ngày, new { htmlAttributes = new { Class = "form-control col-md-2", @placeholder = "Đến ngày", onfocus = "(this.type='date')", id = "Đến_ngày", @style = "margin: auto; width: 140px" } })
+
+                <input type="submit" value="Tìm" class="btn btn-primary col-md-2" style="margin:auto; display:block; width:50px" />
+            </div>
+        </div>
+    </div>
+}
+
+<h3>Danh sách bên mời thầu đăng ký</h3>
+@Html.ActionLink("Phê duyệt tất cả", "ApproveAll", "NhaThauDaDuyets", new { @class = "btn btn-success", @style = "width:fit-content", onclick = "return confirm('Are you sure?')" })
+<br />
+<table class="table-bordered table-striped">
+    @if (Model.BenMoiThauDaDuyetModel != null)
+    {
+        if (Model.BenMoiThauDaDuyetModel.Count() != 0)
+        {
+            <tr style="background-color:lightgray">
+                <th>
+                    STT
+                </th>
+                <th>
+                    Mã cơ quan
+                </th>
+                <th>
+                    Bên mời thầu
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+            </tr>
+            int i = 1;
+            foreach (var item in Model.BenMoiThauDaDuyetModel)
+            {
+                <tr class='clickable-row' data-href='@Url.Action("ConfirmApprove", "BenMoiThauDaDuyets", new { id = item.ID }, null)'>
+                    <td style="text-align:center">
+                        @i
+                    </td>
+                    <td style="text-align:center">
+                        @item.Mã_cơ_quan
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Bên_mời_thầu, "Details", "BenMoiThauDaDuyets", new { id = item.ID }, null) <br />
+                    </td>
+
+                    <td>
+                        @item.Địa_chỉ
+                    </td>
+                    <td style="text-align:center">
+                        @item.Số_điện_thoại
+                    </td>
+
+                </tr>
+                i = i + 1;
+            }
+        }
+    }
+</table>
+@if (Model.BenMoiThauDaDuyetModel != null)
+{
+    if (Model.BenMoiThauDaDuyetModel.Count() == 0)
+    {
+        <div style="padding: 1em 1em 1em 1em; background-color:whitesmoke">
+            Không tìm thấy dữ liệu
+        </div>
+    }
+}
+@if (Model.BenMoiThauDaDuyetModel == null)
+{
+    <div style="padding: 1em 1em 1em 1em; background-color:whitesmoke">
+        Không tìm thấy dữ liệu
+    </div>
+}
+
+
+
+@if (Model.BenMoiThauDaDuyetModel != null)
+{
+    if (Model.BenMoiThauDaDuyetModel.Count() != 0)
+    {
+        <br />
+        @Html.PagedListPager(Model.BenMoiThauDaDuyetModel, page => Url.Action("GetList",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    }
+
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/SearchBar.css")
+    <script>
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+}

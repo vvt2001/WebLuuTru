@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NhaThauDaDuyetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NhaThauDaDuyet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tên nhà thầu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Số ĐKKD" Type="nvarchar" MaxLength="10" />
+          <Property Name="Địa chỉ" Type="nvarchar(max)" />
+          <Property Name="Ngày phê duyệt" Type="date" />
+          <Property Name="Loại hình doanh nghiệp" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngày thành lập" Type="date" />
+          <Property Name="Tên tiếng Anh" Type="nvarchar(max)" />
+          <Property Name="Tỉnh Thành phố" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quốc gia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Địa chỉ giao dịch" Type="nvarchar(max)" />
+          <Property Name="Số nhân viên" Type="int" />
+          <Property Name="Vị trí nhà thầu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Số điện thoại" Type="nvarchar" MaxLength="20" />
+          <Property Name="Số Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="Trạng thái đóng phí" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="NhaThauDaDuyetModelStoreContainer">
+          <EntitySet Name="NhaThauDaDuyet" EntityType="Self.NhaThauDaDuyet" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NhaThauDaDuyetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NhaThauDaDuyet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tên_nhà_thầu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Số_ĐKKD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Địa_chỉ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ngày_phê_duyệt" Type="DateTime" Precision="0" />
+          <Property Name="Loại_hình_doanh_nghiệp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngày_thành_lập" Type="DateTime" Precision="0" />
+          <Property Name="Tên_tiếng_Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tỉnh_Thành_phố" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quốc_gia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Địa_chỉ_giao_dịch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Số_nhân_viên" Type="Int32" />
+          <Property Name="Vị_trí_nhà_thầu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Số_điện_thoại" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Số_Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Trạng_thái_đóng_phí" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="NhaThauDaDuyetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NhaThauDaDuyets" EntityType="Self.NhaThauDaDuyet" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NhaThauDaDuyetModelStoreContainer" CdmEntityContainer="NhaThauDaDuyetEntities">
+          <EntitySetMapping Name="NhaThauDaDuyets">
+            <EntityTypeMapping TypeName="NhaThauDaDuyetModel.NhaThauDaDuyet">
+              <MappingFragment StoreEntitySet="NhaThauDaDuyet">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Trạng_thái_đóng_phí" ColumnName="Trạng thái đóng phí" />
+                <ScalarProperty Name="Số_Fax" ColumnName="Số Fax" />
+                <ScalarProperty Name="Số_điện_thoại" ColumnName="Số điện thoại" />
+                <ScalarProperty Name="Vị_trí_nhà_thầu" ColumnName="Vị trí nhà thầu" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tên_nhà_thầu" ColumnName="Tên nhà thầu" />
+                <ScalarProperty Name="Số_ĐKKD" ColumnName="Số ĐKKD" />
+                <ScalarProperty Name="Địa_chỉ" ColumnName="Địa chỉ" />
+                <ScalarProperty Name="Ngày_phê_duyệt" ColumnName="Ngày phê duyệt" />
+                <ScalarProperty Name="Loại_hình_doanh_nghiệp" ColumnName="Loại hình doanh nghiệp" />
+                <ScalarProperty Name="Ngày_thành_lập" ColumnName="Ngày thành lập" />
+                <ScalarProperty Name="Tên_tiếng_Anh" ColumnName="Tên tiếng Anh" />
+                <ScalarProperty Name="Tỉnh_Thành_phố" ColumnName="Tỉnh Thành phố" />
+                <ScalarProperty Name="Quốc_gia" ColumnName="Quốc gia" />
+                <ScalarProperty Name="Địa_chỉ_giao_dịch" ColumnName="Địa chỉ giao dịch" />
+                <ScalarProperty Name="Số_nhân_viên" ColumnName="Số nhân viên" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

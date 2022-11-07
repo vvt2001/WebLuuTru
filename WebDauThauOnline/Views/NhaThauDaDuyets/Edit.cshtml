@@ -1,0 +1,170 @@
+﻿@model WebDauThauOnline.Models.NhaThauDaDuyet
+
+@{
+    ViewBag.Title = "Chỉnh sửa nhà thầu";
+    if (Session["ID"] == null)
+    {
+        Response.Redirect("~/Accounts");
+    }
+}
+<style>
+    h3 {
+        margin-left: 2%
+    }
+
+    .form-control {
+        width: 300px;
+    }
+</style>
+<h2>Chỉnh sửa nhà thầu</h2>
+
+<br />
+@using (Html.BeginForm("Edit", "NhaThauDaDuyets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.AccountID)
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Ngày phê duyệt</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Ngày_phê_duyệt, new { htmlAttributes = new { @class = "form-control", @onfocus = "(this.type='date')", @id = "datepicker" } })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Mã số doanh nghiệp</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Số_ĐKKD, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Loại hình doanh nghiệp</p>
+
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.Loại_hình_doanh_nghiệp_EnumValue, ViewBag.Loại_hình_doanh_nghiệp_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Ngày thành lập</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Ngày_thành_lập, new { htmlAttributes = new { @class = "form-control", @onfocus = "(this.type='date')", @id = "datepicker" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Tên nhà thầu</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Tên_nhà_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Tên_nhà_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3"> Tên tiếng Anh</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Tên_tiếng_Anh, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Số điện thoại</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Số_điện_thoại, new { htmlAttributes = new { @class = "form-control", onkeypress = "return isNumber(event)" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Số Fax</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Số_Fax, new { htmlAttributes = new { @class = "form-control", onkeypress = "return isNumber(event)" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Địa chỉ trụ sở</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Địa_chỉ, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Tỉnh/ thành phố</p>
+
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.Tỉnh_Thành_phố_EnumValue, ViewBag.Tỉnh_Thành_phố_EnumList as SelectList, "-Tỉnh/Thành phố-", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Quốc gia</p>
+
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.Quốc_gia_EnumValue, ViewBag.Quốc_gia_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Địa chỉ giao dịch</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Địa_chỉ_giao_dịch, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Số nhân viên</p>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Số_nhân_viên, new { htmlAttributes = new { @class = "form-control", onkeypress = "return isNumber(event)" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-3">Trạng thái đóng phí</p>
+
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.Trạng_thái_đóng_phí_EnumValue, ViewBag.Trạng_thái_đóng_phí_Enumlist as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-7">
+            <input type="submit" value="Chỉnh sửa" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-7 text-success">
+            @ViewBag.UploadStatus
+        </div>
+    </div>
+</div>
+}
+
+<div class="col-md-offset-3">
+    @Html.ActionLink("Về danh sách Nhà thầu", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $('#datepicker').datetimepicker({
+            dateFormat: "dd/MM/yyyy"
+        });
+
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

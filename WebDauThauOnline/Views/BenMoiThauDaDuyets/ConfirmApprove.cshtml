@@ -1,0 +1,181 @@
+﻿@model WebDauThauOnline.Models.BenMoiThauDaDuyet
+
+@{
+    ViewBag.Title = "Xác nhận Phê duyệt";
+}
+<style>
+    th {
+        background-color: #f2f2f2;
+        text-align: center;
+        white-space: nowrap;
+        width: 15%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    table {
+        table-layout: fixed;
+        border: solid 1px
+    }
+</style>
+<div>
+    <h3>Thông tin bên mời thầu</h3>
+    <table class="table" , style="table-layout: fixed">
+        <tr>
+            <th>
+                Mã số doanh nghiệp
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Mã_cơ_quan)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tên cơ quan (đầy đủ)
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Bên_mời_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tên cơ quan (viết tắt)
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Tên_viết_tắt)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tên cơ quan (tiếng Anh)
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Tên_tiếng_Anh)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Số ĐKKD
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Số_ĐKKD)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Phân loại trực thuộc
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Phân_loại_trực_thuộc)
+            </td>
+
+            @if (Model.Phân_loại_trực_thuộc == "Tập đoàn/ TCT")
+            {
+                <th>
+                    Tập đoàn/ TCT
+                </th>
+            }
+            @if (Model.Phân_loại_trực_thuộc == "Bộ ban ngành")
+            {
+                <th>
+                    Bộ ban ngành
+                </th>
+            }
+            @if (Model.Phân_loại_trực_thuộc == "UBND Tỉnh/ Thành phố")
+            {
+                <th>
+                    UBND Tỉnh/ Thành phố
+                </th>
+            }
+            <td>
+                @Html.DisplayFor(model => model.Tập_đoàn_TCT_Bộ_ban_ngành)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tỉnh/Thành phố
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Tỉnh_Thành_Phố)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Địa chỉ
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Địa_chỉ)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Số điện thoại cơ quan
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Số_điện_thoại)
+            </td>
+
+            <th>
+                Số Fax cơ quan
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Số_Fax_cơ_quan)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Trang web
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Trang_web)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Hình thái kinh doanh
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Hình_thái_kinh_doanh)
+            </td>
+
+            <th>
+                Ngành nghề
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Ngành_nghề)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Mã số thuế
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Mã_số_thuế)
+            </td>
+        </tr>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Phê duyệt" class="btn btn-success" /> |
+            @Html.ActionLink("Quay lại danh sách đăng ký", "ApproveRequest", "BenMoiThauDaDuyets")
+        </div>
+    }
+
+
+</div>

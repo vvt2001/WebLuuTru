@@ -1,0 +1,198 @@
+﻿@model WebDauThauOnline.Models.KetQuaLuaChonNhaThauViewModel
+
+@{
+    ViewBag.Title = "Đăng tải kết quả";
+    if (Session["ID"] == null)
+    {
+        Response.Redirect("~/Accounts");
+    }
+}
+<style>
+    h3 {
+        margin-left: 2%
+    }
+
+    .form-control {
+        width: 300px;
+    }
+</style>
+
+<h2>Đăng tải kết quả lựa chọn nhà thầu</h2>
+<br />
+
+@using (Html.BeginForm("CreateNew", "KetQuaLuaChonNhaThau", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Thông tin chi tiết</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.ID)
+        @Html.HiddenFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.AccountID)
+        @Html.HiddenFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.NhaThauTrungThauID)
+        @Html.HiddenFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.ThongBaoMoiThauID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_TBMT, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_TBMT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_TBMT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_hiệu_KHLCNT, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_hiệu_KHLCNT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_hiệu_KHLCNT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_đăng_tải, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_đăng_tải, new { htmlAttributes = new { @class = "form-control", @onfocus = "(this.type='datetime-local')", @id = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_đăng_tải, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_phê_duyệt, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_phê_duyệt, new { htmlAttributes = new { @class = "form-control", @onfocus = "(this.type='datetime-local')", @id = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Ngày_phê_duyệt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_gói_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_gói_thầu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_gói_thầu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Lĩnh_vực, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Lĩnh_vực_EnumValue, ViewBag.Lĩnh_vực_EnumList as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_dự_án_Dự_toán_mua_sắm, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_dự_án_Dự_toán_mua_sắm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Tên_dự_án_Dự_toán_mua_sắm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Bên_mời_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Bên_mời_thầu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Bên_mời_thầu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_lựa_chọn_NT, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_lựa_chọn_NT_EnumValue, ViewBag.Hình_thức_lựa_chọn_NT_EnumList as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_dự_toán, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_dự_toán, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_dự_toán, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_gói_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_gói_thầu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_gói_thầu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Đính_kèm_thông_báo_kết_quả_LCNT, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.EmpFileModel.fileUpload, "", new { @type = "file", @multiple = "multiple", @onchange = "checkSize(this)" })
+                @Html.ValidationMessageFor(model => model.EmpFileModel.fileUpload, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3>Kết quả</h3>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Nhà_thầu_trúng_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Nhà_thầu_trúng_thầu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Nhà_thầu_trúng_thầu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_trúng_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_trúng_thầu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Giá_trúng_thầu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_hợp_đồng, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Hình_thức_hợp_đồng_EnumValue, ViewBag.Hình_thức_hợp_đồng_EnumList as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Thời_gian_thực_hiện_HĐ, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Thời_gian_thực_hiện_HĐ, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Thời_gian_thực_hiện_HĐ, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_quyết_định_phê_duyệt, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_quyết_định_phê_duyệt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KetQuaLuaChonNhaThau_ThongTinChiTiet.Số_quyết_định_phê_duyệt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-7">
+                <input type="submit" value="Đăng tải" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-7 text-success">
+                @ViewBag.FileStatus
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-offset-3">
+    @Html.ActionLink("Về trang chủ", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    function checkSize(input) {
+        if (input.files && input.files[0].size > (2 * 1024 * 1024 * 1024)) {
+            alert("Kích thước file quá lớn.");
+            input.value = null;
+        }
+    }
+    </script>
+}

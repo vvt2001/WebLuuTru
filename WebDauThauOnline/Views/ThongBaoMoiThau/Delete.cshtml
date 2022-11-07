@@ -1,0 +1,255 @@
+﻿@model WebDauThauOnline.Models.ThongBaoMoiThauViewModel
+
+@{
+    ViewBag.Title = "Xóa thông báo";
+    if ((int)Session["ID"] != Model.ThongBaoMoiThauModel.AccountID)
+    {
+        Response.Redirect("~/ThongBaoMoiThau/Details/" + Model.ThongBaoMoiThauModel.ID.ToString());
+    }
+}
+<style>
+    th {
+        background-color: #f2f2f2;
+        width: 30%;
+    }
+
+    table {
+        table-layout: fixed;
+        border: solid 1px
+    }
+</style>
+<h3>Chắc chắn xóa thông báo?</h3>
+<div>
+    <h3>Thông tin chi tiết</h3>
+    <table class="table" , style="table-layout: fixed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Số_TBMT)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Số_TBMT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Số_hiệu_KHLCNT)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Số_hiệu_KHLCNT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Lĩnh_vực)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Lĩnh_vực)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Bên_mời_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Bên_mời_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Tên_gói_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Tên_gói_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Phân_loại)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Phân_loại)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Tên_dự_toán_mua_sắm)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Tên_dự_toán_mua_sắm)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Chi_tiết_nguồn_vốn)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Chi_tiết_nguồn_vốn)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Loại_hợp_đồng)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Loại_hợp_đồng)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Hình_thức_lựa_chọn_nhà_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Hình_thức_lựa_chọn_nhà_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Phương_thức_LCNT)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Phương_thức_LCNT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Thời_gian_thực_hiện_hợp_đồng)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Thời_gian_thực_hiện_hợp_đồng)
+            </td>
+        </tr>
+    </table>
+    <h3>Tham dự thầu</h3>
+    <table class="table" , style="table-layout: fixed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Hình_thức_dự_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Hình_thức_dự_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Chi_phí_E_HSMT)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Chi_phí_E_HSMT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Thời_gian_hiệu_lực_của_E_HSDT)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Thời_gian_hiệu_lực_của_E_HSDT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Địa_điểm_nhận_HSDT)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Địa_điểm_nhận_HSDT)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Địa_điểm_thực_hiện_gói_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Địa_điểm_thực_hiện_gói_thầu)
+            </td>
+        </tr>
+    </table>
+    <h3>Mở thầu</h3>
+    <table class="table" , style="table-layout: fixed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Thời_điểm_đóng_mở_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Thời_điểm_đóng_mở_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Địa_điểm_mở_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Địa_điểm_mở_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Dự_toán_gói_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Dự_toán_gói_thầu)
+            </td>
+        </tr>
+    </table>
+    <h3>Bảo đảm dự thầu</h3>
+    <table class="table" , style="table-layout: fixed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Số_tiền_bảo_đảm_dự_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Số_tiền_bảo_đảm_dự_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Hình_thức_bảo_đảm_dự_thầu)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ThongBaoMoiThauModel.Hình_thức_bảo_đảm_dự_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThongBaoMoiThauModel.Hồ_sơ_mời_thầu)
+            </th>
+            <td>
+                @foreach (var item in Model.Files)
+                {
+                    @Html.ActionLink(item.Name, "DownLoadFile", new { id = item.ID })
+                    <br />
+                }
+            </td>
+        </tr>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Về trang chính", "Index", "Home")
+        </div>
+    }
+</div>

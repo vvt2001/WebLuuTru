@@ -1,0 +1,336 @@
+﻿@model WebDauThauOnline.Models.ThongBaoMoiThauViewModel
+
+@{
+    ViewBag.Title = "Chỉnh sửa thông báo";
+    if ((int)Session["ID"] != Model.ThongBaoMoiThauModel.AccountID)
+    {
+        Response.Redirect("~/ThongBaoMoiThau/Details/" + Model.ThongBaoMoiThauModel.ID.ToString());
+    }
+}
+<style>
+    h3 {
+        margin-left: 2%
+    }
+    .form-control {
+        width: 300px;
+    }
+</style>
+
+<h2>Chỉnh sửa thông báo mời thầu</h2>
+
+<br />
+
+@using (Html.BeginForm("Edit", "ThongBaoMoiThau", FormMethod.Post, new { enctype = "multipart/form-data", id = "submit-upload-file" }))
+{
+
+<div class="form-horizontal">
+    <h3>Thông tin chi tiết</h3>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ThongBaoMoiThauModel.ID)
+    @Html.HiddenFor(model => model.ThongBaoMoiThauModel.AccountID)
+    @Html.HiddenFor(model => model.ThongBaoMoiThauModel.BenMoiThauID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Số_TBMT, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Số_TBMT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Số_TBMT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Số_hiệu_KHLCNT, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Số_hiệu_KHLCNT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Số_hiệu_KHLCNT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Lĩnh_vực, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Lĩnh_vực_EnumValue, ViewBag.Lĩnh_vực_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Bên_mời_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Bên_mời_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Bên_mời_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Tên_gói_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Tên_gói_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Tên_gói_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Phân_loại, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Phân_loại_EnumValue, ViewBag.Phân_loại_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Tên_dự_toán_mua_sắm, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Tên_dự_toán_mua_sắm, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Tên_dự_toán_mua_sắm, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Chi_tiết_nguồn_vốn, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Chi_tiết_nguồn_vốn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Chi_tiết_nguồn_vốn, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Loại_hợp_đồng, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Loại_hợp_đồng_EnumValue, ViewBag.Loại_hợp_đồng_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Hình_thức_lựa_chọn_nhà_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Hình_thức_lựa_chọn_nhà_thầu_EnumValue, ViewBag.Hình_thức_lựa_chọn_nhà_thầu_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Phương_thức_LCNT, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Phương_thức_LCNT_EnumValue, ViewBag.Phương_thức_LCNT_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Thời_gian_thực_hiện_hợp_đồng, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Thời_gian_thực_hiện_hợp_đồng, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Thời_gian_thực_hiện_hợp_đồng, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <h3>Tham dự thầu</h3>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Hình_thức_dự_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Hình_thức_dự_thầu_EnumValue, ViewBag.Hình_thức_dự_thầu_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Chi_phí_E_HSMT, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Chi_phí_E_HSMT, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Thời_gian_hiệu_lực_của_E_HSDT, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Thời_gian_hiệu_lực_của_E_HSDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Thời_gian_hiệu_lực_của_E_HSDT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Địa_điểm_nhận_HSDT, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Địa_điểm_nhận_HSDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Địa_điểm_nhận_HSDT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Địa_điểm_thực_hiện_gói_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Địa_điểm_thực_hiện_gói_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Địa_điểm_thực_hiện_gói_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <h3>Mở thầu</h3>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Thời_điểm_đóng_mở_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Thời_điểm_đóng_mở_thầu, new { htmlAttributes = new { @class = "form-control", @onfocus = "(this.type='datetime-local')" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Thời_điểm_đóng_mở_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Địa_điểm_mở_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Địa_điểm_mở_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Địa_điểm_mở_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Dự_toán_gói_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Dự_toán_gói_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Dự_toán_gói_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <h3>Bảo đảm dự thầu</h3>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Số_tiền_bảo_đảm_dự_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.ThongBaoMoiThauModel.Số_tiền_bảo_đảm_dự_thầu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThongBaoMoiThauModel.Số_tiền_bảo_đảm_dự_thầu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Hình_thức_bảo_đảm_dự_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.ThongBaoMoiThauModel.Hình_thức_bảo_đảm_dự_thầu_EnumValue, ViewBag.Hình_thức_bảo_đảm_dự_thầu_EnumList as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThongBaoMoiThauModel.Hồ_sơ_mời_thầu, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-7">
+            <div id="file-upload-section">
+                <table>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.Files)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.Name, "DownLoadFile", new { id = item.ID })
+                                </td>
+                                <td style="padding-left:20px">
+                                    <input type="button" value="x" class="btn btn-default" style="border:none" onclick="DeleteFile(@item.ID)" />
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+                <div class="text-danger">
+                    @ViewBag.FileStatus
+                </div>
+            </div>
+            @Html.TextBoxFor(model => model.EmpFileModel.fileUpload, "", new { @type = "file", @multiple = "multiple", @id = "uploaded-file", @onchange = "checkSize(this)" })
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-7">
+                    <input type="button" value="Đăng tải file" class="btn btn-default" id="upload-btn" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-7">
+            <input type="submit" value="Lưu" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-7 text-success">
+            @ViewBag.EditStatus
+        </div>
+    </div>
+</div>
+}
+<div class="col-md-offset-3">
+    @Html.ActionLink("Về trang chủ", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    var IDCount = @Html.Raw(Json.Encode(@ViewBag.IDCount));
+    var FilesID = @Html.Raw(Json.Encode(@ViewBag.FilesID));
+    var GoiThauID = @Html.Raw(Json.Encode(@ViewBag.GoiThauID));
+    $(function () {
+        $("#upload-btn").click(function FilesID() {
+            var formData = new FormData($('#submit-upload-file')[0]);
+            formData.append("GoiThauID", GoiThauID);
+            $.ajax({
+                // Your server script to process the upload
+                url: '@Url.Action("UploadFile")',
+                type: 'POST',
+                // Form data
+                data: formData,
+                // Tell jQuery not to process data or worry about content-type
+                // You *must* include these options!
+                cache: false,
+                contentType: false,
+                processData: false,
+                // Custom XMLHttpRequest
+                xhr: function () {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+
+                    }
+                    return myXhr;
+                },
+                success: function (data) {
+                    data.forEach(addFile);
+                    LoadData(GoiThauID);
+                },
+                error: function () {
+                    alert("Có lỗi trong việc đăng tải file.");
+                },
+            });
+        });
+
+    });
+
+    function LoadData(GoiThauID) {
+        $("#file-upload-section").load(GoiThauID.toString() + " #file-upload-section");
+        console.log(IDCount);
+        console.log(FilesID);
+        return false;
+    }
+
+    function DeleteFile(ID) {
+        $.ajax({
+            url: '@Url.Action("DeleteFileAjax")',
+            type: 'POST',
+            data: jQuery.param({ FileID: ID, GoiThauID: GoiThauID }),
+            success: function () {
+                IDCount--;
+                const index = FilesID.indexOf(ID);
+                FilesID.splice(index, 1);
+                LoadData(GoiThauID);
+            },
+            error: function () {
+                alert("Có lỗi trong việc xóa file.");
+            },
+        });
+        return false;
+    }
+
+    function addFile(item) {
+        FilesID.push(item);
+        IDCount++;
+    }
+
+    function checkSize(input) {
+        if (input.files && input.files[0].size > (2 * 1024 * 1024 * 1024)) {
+            alert("Kích thước file quá lớn.");
+            input.value = null;
+        }
+    }
+</script>
+}

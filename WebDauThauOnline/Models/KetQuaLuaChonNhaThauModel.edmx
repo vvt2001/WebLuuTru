@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KetQuaLuaChonNhaThauModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KetQuaLuaChonNhaThau_ThongTinChiTiet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Số TBMT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Số hiệu KHLCNT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tên gói thầu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tên dự án/ Dự toán mua sắm" Type="nvarchar(max)" />
+          <Property Name="Bên mời thầu" Type="nvarchar(max)" />
+          <Property Name="Hình thức lựa chọn NT" Type="nvarchar" MaxLength="50" />
+          <Property Name="Giá dự toán" Type="bigint" />
+          <Property Name="Giá gói thầu" Type="bigint" />
+          <Property Name="Nhà thầu trúng thầu" Type="nvarchar(max)" />
+          <Property Name="Giá trúng thầu" Type="bigint" />
+          <Property Name="Hình thức hợp đồng" Type="nvarchar" MaxLength="20" />
+          <Property Name="Thời gian thực hiện HĐ" Type="int" />
+          <Property Name="Số quyết định phê duyệt" Type="nvarchar(max)" />
+          <Property Name="Ngày phê duyệt" Type="datetime2" Precision="0" />
+          <Property Name="Ngày đăng tải" Type="datetime2" Precision="0" />
+          <Property Name="Lĩnh vực" Type="nvarchar" MaxLength="20" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="NhaThauTrungThauID" Type="int" />
+          <Property Name="ThongBaoMoiThauID" Type="int" />
+          <Property Name="BenMoiThauID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="KetQuaLuaChonNhaThauModelStoreContainer">
+          <EntitySet Name="KetQuaLuaChonNhaThau_ThongTinChiTiet" EntityType="Self.KetQuaLuaChonNhaThau_ThongTinChiTiet" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KetQuaLuaChonNhaThauModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KetQuaLuaChonNhaThau_ThongTinChiTiet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Số_TBMT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Số_hiệu_KHLCNT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tên_gói_thầu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tên_dự_án_Dự_toán_mua_sắm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bên_mời_thầu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hình_thức_lựa_chọn_NT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Giá_dự_toán" Type="Int64" />
+          <Property Name="Giá_gói_thầu" Type="Int64" />
+          <Property Name="Nhà_thầu_trúng_thầu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Giá_trúng_thầu" Type="Int64" />
+          <Property Name="Hình_thức_hợp_đồng" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Thời_gian_thực_hiện_HĐ" Type="Int32" />
+          <Property Name="Số_quyết_định_phê_duyệt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ngày_phê_duyệt" Type="DateTime" Precision="0" />
+          <Property Name="Ngày_đăng_tải" Type="DateTime" Precision="0" />
+          <Property Name="Lĩnh_vực" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="NhaThauTrungThauID" Type="Int32" />
+          <Property Name="ThongBaoMoiThauID" Type="Int32" />
+          <Property Name="BenMoiThauID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="KetQuaLuaChonNhaThauEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KetQuaLuaChonNhaThau_ThongTinChiTiet" EntityType="Self.KetQuaLuaChonNhaThau_ThongTinChiTiet" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KetQuaLuaChonNhaThauModelStoreContainer" CdmEntityContainer="KetQuaLuaChonNhaThauEntities">
+          <EntitySetMapping Name="KetQuaLuaChonNhaThau_ThongTinChiTiet">
+            <EntityTypeMapping TypeName="KetQuaLuaChonNhaThauModel.KetQuaLuaChonNhaThau_ThongTinChiTiet">
+              <MappingFragment StoreEntitySet="KetQuaLuaChonNhaThau_ThongTinChiTiet">
+                <ScalarProperty Name="BenMoiThauID" ColumnName="BenMoiThauID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Số_TBMT" ColumnName="Số TBMT" />
+                <ScalarProperty Name="Số_hiệu_KHLCNT" ColumnName="Số hiệu KHLCNT" />
+                <ScalarProperty Name="Tên_gói_thầu" ColumnName="Tên gói thầu" />
+                <ScalarProperty Name="Tên_dự_án_Dự_toán_mua_sắm" ColumnName="Tên dự án/ Dự toán mua sắm" />
+                <ScalarProperty Name="Bên_mời_thầu" ColumnName="Bên mời thầu" />
+                <ScalarProperty Name="Hình_thức_lựa_chọn_NT" ColumnName="Hình thức lựa chọn NT" />
+                <ScalarProperty Name="Giá_dự_toán" ColumnName="Giá dự toán" />
+                <ScalarProperty Name="Giá_gói_thầu" ColumnName="Giá gói thầu" />
+                <ScalarProperty Name="Nhà_thầu_trúng_thầu" ColumnName="Nhà thầu trúng thầu" />
+                <ScalarProperty Name="Giá_trúng_thầu" ColumnName="Giá trúng thầu" />
+                <ScalarProperty Name="Hình_thức_hợp_đồng" ColumnName="Hình thức hợp đồng" />
+                <ScalarProperty Name="Thời_gian_thực_hiện_HĐ" ColumnName="Thời gian thực hiện HĐ" />
+                <ScalarProperty Name="Số_quyết_định_phê_duyệt" ColumnName="Số quyết định phê duyệt" />
+                <ScalarProperty Name="Ngày_phê_duyệt" ColumnName="Ngày phê duyệt" />
+                <ScalarProperty Name="Ngày_đăng_tải" ColumnName="Ngày đăng tải" />
+                <ScalarProperty Name="Lĩnh_vực" ColumnName="Lĩnh vực" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="NhaThauTrungThauID" ColumnName="NhaThauTrungThauID" />
+                <ScalarProperty Name="ThongBaoMoiThauID" ColumnName="ThongBaoMoiThauID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

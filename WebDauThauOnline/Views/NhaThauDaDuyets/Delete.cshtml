@@ -1,0 +1,142 @@
+﻿@model WebDauThauOnline.Models.NhaThauDaDuyet
+
+@{
+    ViewBag.Title = "Xóa thông tin";
+}
+<style>
+    th {
+        background-color: #f2f2f2;
+        text-align: center;
+        white-space: nowrap;
+        width: 15%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    table {
+        table-layout: fixed;
+        border: solid 1px
+    }
+</style>
+<h3>Chắc chắn xóa thông tin nhà thầu?</h3>
+<div>
+    <h3>Thông tin nhà thầu</h3>
+    <table class="table" , style="table-layout: fixed">
+        <tr>
+            <th>
+                Mã số doanh nghiệp
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Số_ĐKKD)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Loại hình doanh nghiệp
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Loại_hình_doanh_nghiệp)
+            </td>
+            <th>
+                Ngày thành lập
+            </th>
+
+            <td>
+                @if (Model.Ngày_thành_lập != null)
+                {
+                    @Model.Ngày_thành_lập.Value.ToString("dd/MM/yyyy")
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tên tiếng Việt
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Tên_nhà_thầu)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tên tiếng Anh
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Tên_tiếng_Anh)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Số điện thoại
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Số_điện_thoại)
+            </td>
+            <th>
+                Số Fax
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Số_Fax)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Địa chỉ trụ sở
+            </th>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.Địa_chỉ)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tỉnh/ Thành phố
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Tỉnh_Thành_phố)
+            </td>
+            <th>
+                Quốc gia
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Quốc_gia)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Địa chỉ giao dịch
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Địa_chỉ_giao_dịch)
+            </td>
+            <th>
+                Số nhân viên
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Số_nhân_viên)
+            </td>
+        </tr>
+    </table>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-success" /> |
+            @Html.ActionLink("Quay lại danh sách nhà thầu", "GetList", "NhaThauDaDuyets")
+        </div>
+    }
+
+
+</div>
