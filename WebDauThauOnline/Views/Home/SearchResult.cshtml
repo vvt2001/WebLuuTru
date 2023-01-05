@@ -98,7 +98,8 @@
                 </td>
                 <td class="col-md-3" style="padding-left: 1em;min-width: 270px ">
                     Số TBMT: @Html.ActionLink(item.Số_TBMT, "Details", "ThongBaoMoiThau", new { id = item.ID }, null) <br />
-                    Thời điểm đăng tải: @item.Thời_điểm_đăng_tải.Value.ToString("dd/MM/yyyy hh:mm tt") <br />
+                    Thời điểm đăng tải: @if(item.Thời_điểm_đăng_tải != null)
+                    { item.Thời_điểm_đăng_tải.Value.ToString("dd/MM/yyyy hh:mm tt"); } <br />
                     Lĩnh vực: @item.Lĩnh_vực
                 </td>
             </tr>
@@ -163,13 +164,13 @@
     <br />
     if (filter == "ThongBaoMoiThau")
     {
-        @Html.PagedListPager(Model.thongBaoMoiThauModel, page => Url.Action("GetList",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @Html.PagedListPager(Model.thongBaoMoiThauModel, page => Url.Action("SearchResult",
+    new { page }))
     }
     if (filter == "KetQuaLuaChonNhaThau")
     {
-        @Html.PagedListPager(Model.ketQuaLuaChonNhaThauModel, page => Url.Action("GetList",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @Html.PagedListPager(Model.ketQuaLuaChonNhaThauModel, page => Url.Action("SearchResult",
+    new { page }))
     }
 }
 

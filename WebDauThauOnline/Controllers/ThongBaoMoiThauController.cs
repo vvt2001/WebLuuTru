@@ -256,7 +256,7 @@ namespace WebDauThauOnline.Controllers
                     {
                         break;
                     }
-                    else if(fileUpload.ContentLength > 2000000)
+                    else if(fileUpload.ContentLength > 20000000)
                     {
                         continue;
                     }
@@ -506,7 +506,7 @@ namespace WebDauThauOnline.Controllers
                     {
                         break;
                     }
-                    else if (fileUpload.ContentLength > 2000000)
+                    else if (fileUpload.ContentLength > 20000000)
                     {
                         continue;
                     }
@@ -865,7 +865,7 @@ namespace WebDauThauOnline.Controllers
             ViewBag.Hình_thức_EnumList = new SelectList(Hình_thức_EnumData, "ID", "Name");
             ViewBag.Lĩnh_vực_EnumList = new SelectList(Lĩnh_vực_EnumData, "ID", "Name");
 
-            int pageSize = 10;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             searchViewModel.thongBaoMoiThauModel = db.ThongBaoMoiThau_ThongTinChiTiet.AsEnumerable().OrderBy(x => x.ID).ToPagedList(pageNumber, pageSize);
 
@@ -967,7 +967,7 @@ namespace WebDauThauOnline.Controllers
 
                 if (result.Any())
                 {
-                    int pageSize = 10;
+                    int pageSize = 3;
                     int pageNumber = (page ?? 1);
                     this.searchViewModel.thongBaoMoiThauModel = result.OrderBy(x => x.ID).ToPagedList(pageNumber, pageSize); ;
                 }
@@ -999,6 +999,14 @@ namespace WebDauThauOnline.Controllers
                     break;
             }
             return Json(timeInterval, JsonRequestBehavior.AllowGet);
+        }
+
+        public PartialViewResult Notifications()
+        {
+            var currentDate = DateTime.Now;
+            var DayCount = 7;
+            var ThongBaoSapDong = db.ThongBaoMoiThau_ThongTinChiTiet.Where(x => DbFunctions.DiffDays(currentDate, x.Thời_điểm_đóng_mở_thầu) <= DayCount && DbFunctions.DiffDays(currentDate, x.Thời_điểm_đóng_mở_thầu) >= 0).AsEnumerable();
+            return PartialView(ThongBaoSapDong);
         }
     }
 }

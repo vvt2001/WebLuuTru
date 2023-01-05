@@ -109,7 +109,7 @@
                     Thời điểm đăng tải: 
                         @if (item.Thời_điểm_đăng_tải != null)
                         {
-                            item.Thời_điểm_đăng_tải.Value.ToString("dd/MM/yyyy HH:mm");
+                            @item.Thời_điểm_đăng_tải.Value.ToString("dd/MM/yyyy");
                         }
                      <br />
                     Lĩnh vực: @item.Lĩnh_vực
@@ -159,7 +159,7 @@
                     Thời điểm đăng tải:
                     @if (item.Ngày_đăng_tải != null)
                     {
-                        item.Ngày_đăng_tải.Value.ToString("dd/MM/yyyy HH:mm");
+                        @item.Ngày_đăng_tải.Value.ToString("dd/MM/yyyy");
                     }
                     <br />
                     Lĩnh vực: @item.Lĩnh_vực
@@ -182,13 +182,13 @@
     <br />
     if (ViewBag.filter == "ThongBaoMoiThau")
     {
-        @Html.PagedListPager(Model.thongBaoMoiThauModel, page => Url.Action("GetList",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @Html.PagedListPager(Model.thongBaoMoiThauModel, page => Url.Action("Index",
+    new { page, filter = ViewBag.Filter }))
     }
     if (ViewBag.filter == "KetQuaLuaChonNhaThau")
     {
-        @Html.PagedListPager(Model.ketQuaLuaChonNhaThauModel, page => Url.Action("GetList",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @Html.PagedListPager(Model.ketQuaLuaChonNhaThauModel, page => Url.Action("Index",
+    new { page, filter = ViewBag.Filter }))
     }
 }
 

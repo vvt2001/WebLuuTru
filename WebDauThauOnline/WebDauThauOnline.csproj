@@ -432,6 +432,7 @@
     <Content Include="Views\BenMoiThauDaDuyets\Edit.cshtml" />
     <Content Include="Views\NhaThauDaDuyets\Delete.cshtml" />
     <Content Include="Views\BenMoiThauDaDuyets\Delete.cshtml" />
+    <Content Include="Views\ThongBaoMoiThau\Notifications.cshtml" />
     <None Include="Web.FolderProfile.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

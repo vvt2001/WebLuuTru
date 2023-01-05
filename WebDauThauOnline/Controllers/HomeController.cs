@@ -84,7 +84,7 @@ namespace WebDauThauOnline.Controllers
             ViewBag.Hình_thức_EnumList = new SelectList(Hình_thức_EnumData, "ID", "Name");
             ViewBag.Lĩnh_vực_EnumList = new SelectList(Lĩnh_vực_EnumData, "ID", "Name");
 
-            int pageSize = 10;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             string currentFilter = (filter ?? "ThongBaoMoiThau");
 
@@ -171,7 +171,7 @@ namespace WebDauThauOnline.Controllers
             ViewBag.Hình_thức_EnumList = new SelectList(Hình_thức_EnumData, "ID", "Name");
             ViewBag.Lĩnh_vực_EnumList = new SelectList(Lĩnh_vực_EnumData, "ID", "Name");
 
-            int pageSize = 10;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             searchViewModel.thongBaoMoiThauModel = db1.ThongBaoMoiThau_ThongTinChiTiet.AsEnumerable().OrderBy(x => x.ID).ToPagedList(pageNumber, pageSize);
             searchViewModel.ketQuaLuaChonNhaThauModel = db2.KetQuaLuaChonNhaThau_ThongTinChiTiet.AsEnumerable().OrderBy(x => x.ID).ToPagedList(pageNumber, pageSize);
@@ -274,7 +274,7 @@ namespace WebDauThauOnline.Controllers
                         result = result.Where(x => x.Lĩnh_vực.Contains(searchModel.Lĩnh_vực.ToDescriptionString()));
 
                     if (result.Any()) {
-                        int pageSize = 10;
+                        int pageSize = 3;
                         int pageNumber = (page ?? 1);
                         this.searchViewModel.thongBaoMoiThauModel = result.OrderBy(x => x.ID).ToPagedList(pageNumber, pageSize); ;
                     }
@@ -318,7 +318,7 @@ namespace WebDauThauOnline.Controllers
                     }
                     if (result.Any())
                     {
-                        int pageSize = 10;
+                        int pageSize = 3;
                         int pageNumber = (page ?? 1);
                         this.searchViewModel.ketQuaLuaChonNhaThauModel = result.OrderBy(x => x.ID).ToPagedList(pageNumber, pageSize);
                     }

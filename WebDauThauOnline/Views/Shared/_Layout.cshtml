@@ -20,25 +20,31 @@
             z-index: 1;
         }
 
-            /* Links inside the dropdown */
-            .dropdown-content a {
-                float: none;
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                text-align: left;
-            }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
 
-                /* Add a grey background color to dropdown links on hover */
-                .dropdown-content a:hover {
-                    background-color: #ddd;
-                }
+        /* Add a grey background color to dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
 
         /* Show the dropdown menu on hover */
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        #noti_Container {
+            margin-top:18px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -82,16 +88,9 @@
                 <ul class="nav navbar-nav">
                     @if (Session["ID"] != null)
                     {
-@*                        if (Session["Admin"].ToString() == "1")
-                        {
-                            <li class="dropdown">
-                                <a href="#">Phê duyệt</a>
-                                <div class="dropdown-content" style="width:200px">
-                                    @Html.ActionLink("Nhà thầu", "ApproveRequest", "NhaThauDaDuyets")
-                                    @Html.ActionLink("Bên mời thầu", "ApproveRequest", "BenMoiThauDaDuyets")
-                                </div>
-                            </li>
-                        }*@
+                    <li id="noti_Container">
+                        @Html.Action("Notifications", "ThongBaoMoiThau")
+                    </li>
                         <li class="dropdown">
                             <a href="#">Welcome, @HttpContext.Current.Session["Username"].ToString()</a>
                             <div class="dropdown-content" style="width:200px">
@@ -124,4 +123,43 @@
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
 </body>
+<script>
+    $(document).ready(function () {
+
+        // ANIMATEDLY DISPLAY THE NOTIFICATION COUNTER.
+        $('#noti_Counter')
+            .css({ opacity: 0 })
+            .css({ top: '-10px' })
+            .animate({ top: '-2px', opacity: 1 }, 500);
+
+        $('#noti_Button').click(function () {
+
+            // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+            $('#notifications').fadeToggle('fast', 'linear', function () {
+@*                if ($('#notifications').is(':hidden')) {
+                    $('#noti_Button').css('color', 'whitesmoke');
+                }
+                // CHANGE COLOR OF THE BUTTON.
+                else $('#noti_Button').css('color', 'white');*@
+            });
+
+            return false;
+        });
+
+        // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
+        $(document).click(function () {
+            $('#notifications').hide();
+
+@*            // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
+            if ($('#noti_Counter').is(':hidden')) {
+                // CHANGE COLOR OF THE BUTTON.
+                $('#noti_Button').css('color', 'whitesmoke');
+            }*@
+        });
+
+        $('#notifications').click(function () {
+            return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
+        });
+    });
+</script>
 </html>
